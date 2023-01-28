@@ -2,6 +2,11 @@ package io.githuhb.usfese;
 
 import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
+import net.mamoe.mirai.event.GlobalEventChannel;
+import net.mamoe.mirai.event.Listener;
+import net.mamoe.mirai.event.events.GroupMessageEvent;
+import net.mamoe.mirai.event.events.MessageEvent;
+import net.mamoe.mirai.message.data.MessageChain;
 
 public final class GetAnimes extends JavaPlugin {
     public static final GetAnimes INSTANCE = new GetAnimes();
@@ -17,5 +22,10 @@ public final class GetAnimes extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("Plugin loaded!");
+        Listener listener= GlobalEventChannel.INSTANCE.subscribeAlways(MessageEvent.class, event->{
+            if(event.getMessage().contentToString().equals("今日新番")){
+                AnimeGetter.sendBgm(event);
+            }
+        });
     }
 }
