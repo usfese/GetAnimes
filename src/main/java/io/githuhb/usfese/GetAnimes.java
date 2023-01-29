@@ -12,7 +12,7 @@ public final class GetAnimes extends JavaPlugin {
     public static final GetAnimes INSTANCE = new GetAnimes();
 
     private GetAnimes() {
-        super(new JvmPluginDescriptionBuilder("io.githuhb.usfese.getanimes", "0.1.0")
+        super(new JvmPluginDescriptionBuilder("io.githuhb.usfese.getanimes", "0.2.1")
                 .name("Get Animes")
                 .info("从Bangumi获取今日新番")
                 .author("usfese")
@@ -26,7 +26,7 @@ public final class GetAnimes extends JavaPlugin {
             if (event.getMessage().contentToString().equals("今日新番")) {
                 AnimeGetter.sendBgm(event);
             }
-            if (Pattern.matches("^查询 \\d{1,}$", event.getMessage().contentToString())) AnimeGetter.sendBgm(event);
+            if (Pattern.matches("^查询 \\d{1,}$", event.getMessage().contentToString())) AnimeGetter.sendInfo(event);
         });
     }
 }

@@ -3,11 +3,11 @@ plugins {
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
 
-    id("net.mamoe.mirai-console") version "2.13.0-RC2"
+    id("net.mamoe.mirai-console") version "2.14.0"
 }
 
 group = "io.githuhb.usfese"
-version = "0.2.0"
+version = "0.2.1"
 
 repositories {
     maven("https://maven.aliyun.com/repository/public")
@@ -15,6 +15,6 @@ repositories {
 }
 dependencies{
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 
 }
