@@ -188,9 +188,9 @@ public class AnimeGetter {
         } catch (MalformedURLException e) {
             event.getSubject().sendMessage("获取失败!");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            event.getSubject().sendMessage("失败!");
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            event.getSubject().sendMessage("失败!");
         }
     }
 }
