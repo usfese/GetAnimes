@@ -81,9 +81,15 @@ public class AnimeGetter {
     public static void sendBgm(MessageEvent event){
         Gson gson = new Gson();
         ArrayList<Bangumi> bgms = gson.fromJson(doGet("https://api.bgm.tv/calendar"), new TypeToken<List<Bangumi>>(){}.getType());
+        Calendar now = Calendar.getInstance();
+        int wkd = now.get(Calendar.DAY_OF_WEEK); //获取周几
+        if(now.getFirstDayOfWeek() == Calendar.SUNDAY){ //一周第一天是否为星期天
+            wkd = wkd - 1; //若一周第一天为星期天，则-1
+            if(wkd == 0){
+                wkd = 7;
+            }
+        }
         for(int i=0;i<bgms.size();i++){
-            int wkd = Calendar.getInstance().DAY_OF_WEEK;
-            if(wkd == 1){wkd=7;}else{wkd--;}
             if(bgms.get(i).weekday.id == wkd){
                 event.getSubject().sendMessage(bgms.get(i).weekday.cn+"\n");
                 for(int j=0;j<bgms.get(i).items.length;j++){
