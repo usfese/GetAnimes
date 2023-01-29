@@ -4,9 +4,9 @@ import net.mamoe.mirai.console.plugin.jvm.JavaPlugin;
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescriptionBuilder;
 import net.mamoe.mirai.event.GlobalEventChannel;
 import net.mamoe.mirai.event.Listener;
-import net.mamoe.mirai.event.events.GroupMessageEvent;
 import net.mamoe.mirai.event.events.MessageEvent;
-import net.mamoe.mirai.message.data.MessageChain;
+
+import java.util.regex.Pattern;
 
 public final class GetAnimes extends JavaPlugin {
     public static final GetAnimes INSTANCE = new GetAnimes();
@@ -23,9 +23,10 @@ public final class GetAnimes extends JavaPlugin {
     public void onEnable() {
         getLogger().info("Plugin loaded!");
         Listener listener= GlobalEventChannel.INSTANCE.subscribeAlways(MessageEvent.class, event->{
-            if(event.getMessage().contentToString().equals("今日新番")){
+            if (event.getMessage().contentToString().equals("今日新番")) {
                 AnimeGetter.sendBgm(event);
             }
+            if (Pattern.matches("^查询 \\d{1,}$", event.getMessage().contentToString())) AnimeGetter.sendBgm(event);
         });
     }
 }
